@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_educa_lucashenderson/grade_curricular.dart';
-import 'package:projeto_educa_lucashenderson/login_dart';
+import 'package:projeto_educa_lucashenderson/login.dart';
 import 'situacao_academica.dart';
 
 void main() {
