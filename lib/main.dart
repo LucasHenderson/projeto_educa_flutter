@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_educa_lucashenderson/analise_curricular.dart';
+import 'package:projeto_educa_lucashenderson/boletim.dart';
 import 'package:projeto_educa_lucashenderson/grade_curricular.dart';
 import 'package:projeto_educa_lucashenderson/login.dart';
+import 'package:projeto_educa_lucashenderson/rematricula.dart';
 import 'situacao_academica.dart';
 
 void main() {
@@ -55,7 +58,14 @@ class SecretariaPage extends StatelessWidget {
                   context,
                   title: 'BOLETIM (SEMESTRE ATUAL)',
                   description: 'Desempenho nas disciplinas do semestre atual',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Boletim(),
+                      ),
+                    );
+                  },
                 ),
                 _buildCard(
                   context,
@@ -76,7 +86,14 @@ class SecretariaPage extends StatelessWidget {
                   title: 'REMATRÍCULA ONLINE',
                   description:
                       'Fazer a rematrícula nos semestres posteriores, conforme calendário acadêmico. Emissão da declaração de vínculo.',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RematriculaPage(),
+                      ),
+                    );
+                  },
                 ),
                 _buildCard(
                   context,
@@ -97,7 +114,14 @@ class SecretariaPage extends StatelessWidget {
                   title: 'ANÁLISE CURRICULAR',
                   description:
                       'Análise curricular completa.',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AnaliseCurricularPage(),
+                      ),
+                    );
+                  },
                 ),
                 _buildCard(
                   context,
