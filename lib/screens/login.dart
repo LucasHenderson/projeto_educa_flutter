@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_educa_lucashenderson/services/login_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -52,15 +53,6 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Informe o e-mail';
-                        }
-                        if (!RegExp(r'^[\w\.-]+@unitins\.br$').hasMatch(value)) {
-                          return 'Use um e-mail @unitins.br';
-                        }
-                        return null;
-                      },
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -107,12 +99,38 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            // Ação de login (válido)
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Login válido')),
+                            final email = _emailController.text;
+                            final senha = _senhaController.text;
+
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (_) => const Center(child: CircularProgressIndicator()),
                             );
+
+                            try {
+                              final success = await LoginService.login(email, senha);
+                              Navigator.of(context).pop(); // Fecha o loading
+
+                              if (success) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Login realizado com sucesso!')),
+                                );
+                                // Redirecionar para outra página, por exemplo:
+                                // Navigator.pushReplacementNamed(context, '/home');
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('E-mail ou senha inválidos')),
+                                );
+                              }
+                            } catch (e) {
+                              Navigator.of(context).pop(); // Fecha o loading
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Erro ao tentar logar: $e')),
+                              );
+                            }
                           }
                         },
                         child: const Text('Entrar'),

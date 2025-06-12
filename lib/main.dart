@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_educa_lucashenderson/analise_curricular.dart';
-import 'package:projeto_educa_lucashenderson/boletim.dart';
-import 'package:projeto_educa_lucashenderson/grade_curricular.dart';
-import 'package:projeto_educa_lucashenderson/login.dart';
-import 'package:projeto_educa_lucashenderson/rematricula.dart';
-import 'situacao_academica.dart';
+import 'package:projeto_educa_lucashenderson/screens/analise_curricular.dart';
+import 'package:projeto_educa_lucashenderson/screens/boletim.dart';
+import 'package:projeto_educa_lucashenderson/screens/grade_curricular.dart';
+import 'package:projeto_educa_lucashenderson/screens/login.dart';
+import 'package:projeto_educa_lucashenderson/screens/rematricula.dart';
+import 'screens/situacao_academica.dart';
 
 void main() {
   runApp(const MeuApp());
@@ -38,108 +38,110 @@ class SecretariaPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Secretaria',
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.indigo,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Secretaria',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.indigo,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children: [
-                _buildCard(
-                  context,
-                  title: 'BOLETIM (SEMESTRE ATUAL)',
-                  description: 'Desempenho nas disciplinas do semestre atual',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Boletim(),
-                      ),
-                    );
-                  },
-                ),
-                _buildCard(
-                  context,
-                  title: 'GRADE CURRICULAR',
-                  description:
-                      'Selecione um curso e veja as disciplinas distribuídas por período.',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const GradeCurricularPage(),
-                      ),
-                    );
-                  },
-                ),
-                _buildCard(
-                  context,
-                  title: 'REMATRÍCULA ONLINE',
-                  description:
-                      'Fazer a rematrícula nos semestres posteriores, conforme calendário acadêmico. Emissão da declaração de vínculo.',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RematriculaPage(),
-                      ),
-                    );
-                  },
-                ),
-                _buildCard(
-                  context,
-                  title: 'SITUAÇÃO ACADÊMICA',
-                  description:
-                      'Veja a sua situação junto à secretaria e demais departamentos da unitins.',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SituacaoAcademicaPage(),
-                      ),
-                    );
-                  },
-                ),
-                _buildCard(
-                  context,
-                  title: 'ANÁLISE CURRICULAR',
-                  description:
-                      'Análise curricular completa.',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AnaliseCurricularPage(),
-                      ),
-                    );
-                  },
-                ),
-                _buildCard(
-                  context,
-                  title: 'LOGIN',
-                  description:
-                      'Fazer login.',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 16,
+                runSpacing: 16,
+                children: [
+                  _buildCard(
+                    context,
+                    title: 'BOLETIM (SEMESTRE ATUAL)',
+                    description: 'Desempenho nas disciplinas do semestre atual',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Boletim(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildCard(
+                    context,
+                    title: 'GRADE CURRICULAR',
+                    description:
+                        'Selecione um curso e veja as disciplinas distribuídas por período.',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const GradeCurricularPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildCard(
+                    context,
+                    title: 'REMATRÍCULA ONLINE',
+                    description:
+                        'Fazer a rematrícula nos semestres posteriores, conforme calendário acadêmico. Emissão da declaração de vínculo.',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RematriculaPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildCard(
+                    context,
+                    title: 'SITUAÇÃO ACADÊMICA',
+                    description:
+                        'Veja a sua situação junto à secretaria e demais departamentos da unitins.',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SituacaoAcademicaPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildCard(
+                    context,
+                    title: 'ANÁLISE CURRICULAR',
+                    description:
+                        'Análise curricular completa.',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AnaliseCurricularPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildCard(
+                    context,
+                    title: 'LOGIN',
+                    description:
+                        'Fazer login.',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
