@@ -21,7 +21,7 @@ class _AnaliseCurricularPageState extends State<AnaliseCurricularPage> {
   }
 
   Future<void> fetchDisciplinas() async {
-    const url = 'https://sua-api.com/analise-curricular'; // atualize aqui
+    const url = 'https://684b8138ed2578be881b8de9.mockapi.io/analise';
 
     try {
       final response = await http.get(Uri.parse(url));
