@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_educa_lucashenderson/main.dart';
+import 'package:projeto_educa_lucashenderson/screens/secretaria_page.dart';
 import 'package:projeto_educa_lucashenderson/services/login_service.dart';
 
 class LoginPage extends StatefulWidget {
