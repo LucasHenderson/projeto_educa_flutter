@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_educa_lucashenderson/screens/analise_curricular.dart';
 import 'package:projeto_educa_lucashenderson/screens/boletim.dart';
 import 'package:projeto_educa_lucashenderson/screens/grade_curricular.dart';
+import 'package:projeto_educa_lucashenderson/screens/login.dart';
 import 'package:projeto_educa_lucashenderson/screens/rematricula.dart';
 import 'package:projeto_educa_lucashenderson/screens/situacao_academica.dart';
 
@@ -13,6 +14,19 @@ class SecretariaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Secretaria'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            tooltip: 'Sair',
+            onPressed: () {
+              // Ação do botão, como navegar para outra tela
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => LoginPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -91,8 +105,7 @@ class SecretariaPage extends StatelessWidget {
                   _buildCard(
                     context,
                     title: 'ANÁLISE CURRICULAR',
-                    description:
-                        'Análise curricular completa.',
+                    description: 'Análise curricular completa.',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -111,10 +124,12 @@ class SecretariaPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(BuildContext context,
-      {required String title,
-      required String description,
-      required VoidCallback onTap}) {
+  Widget _buildCard(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required VoidCallback onTap,
+  }) {
     return SizedBox(
       width: 300,
       height: 150,
