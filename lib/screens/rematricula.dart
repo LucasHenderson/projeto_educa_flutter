@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:projeto_educa_lucashenderson/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class RematriculaPage extends StatefulWidget {
   const RematriculaPage({super.key});
@@ -11,7 +13,6 @@ class RematriculaPage extends StatefulWidget {
 
 class _RematriculaPageState extends State<RematriculaPage> {
   final String alunoNome = 'Lucas Cunha';
-  final String matricula = '00000000000000000';
   final String periodoAtual = '6º Período';
 
   bool isLoading = true;
@@ -53,7 +54,6 @@ class _RematriculaPageState extends State<RematriculaPage> {
         .toList();
 
     final body = {
-      'matricula': matricula,
       'periodo': periodoAtual,
       'disciplinasSelecionadas': selecionadas,
     };
@@ -83,6 +83,8 @@ class _RematriculaPageState extends State<RematriculaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final nome = Provider.of<AuthProvider>(context).nome ?? 'Usuário';
+    final matricula = Provider.of<AuthProvider>(context).matricula ?? 'Matrícula não encontrada';
     return Scaffold(
       appBar: AppBar(title: const Text('Rematrícula')),
       body: isLoading
@@ -102,7 +104,7 @@ class _RematriculaPageState extends State<RematriculaPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(16),
                           child: Text(
-                            '👤 Aluno: $alunoNome\n📚 Matrícula: $matricula\n📅 Período Atual: $periodoAtual',
+                            '👤 Aluno: $nome\n📚 Matrícula: $matricula\n📅 Período Atual: $periodoAtual',
                             style: const TextStyle(fontSize: 16),
                           ),
                         ),

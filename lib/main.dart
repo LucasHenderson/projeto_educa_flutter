@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_educa_lucashenderson/provider/auth_provider.dart';
 import 'package:projeto_educa_lucashenderson/screens/analise_curricular.dart';
 import 'package:projeto_educa_lucashenderson/screens/boletim.dart';
 import 'package:projeto_educa_lucashenderson/screens/grade_curricular.dart';
 import 'package:projeto_educa_lucashenderson/screens/login.dart';
 import 'package:projeto_educa_lucashenderson/screens/rematricula.dart';
+import 'package:provider/provider.dart';
 import 'screens/situacao_academica.dart';
 
 void main() {
-  runApp(const MeuApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AuthProvider(),
+      child: MeuApp(),
+    ),
+  );
 }
 
 class MeuApp extends StatelessWidget {

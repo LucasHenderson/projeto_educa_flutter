@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_educa_lucashenderson/main.dart';
 import 'package:projeto_educa_lucashenderson/services/login_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -111,15 +112,18 @@ class _LoginPageState extends State<LoginPage> {
                             );
 
                             try {
-                              final success = await LoginService.login(email, senha);
+                              final success = await LoginService.login(email, senha, context);
                               Navigator.of(context).pop(); // Fecha o loading
 
                               if (success) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(content: Text('Login realizado com sucesso!')),
                                 );
-                                // Redirecionar para outra página, por exemplo:
-                                // Navigator.pushReplacementNamed(context, '/home');
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => SecretariaPage()),
+                                );
+
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(content: Text('E-mail ou senha inválidos')),

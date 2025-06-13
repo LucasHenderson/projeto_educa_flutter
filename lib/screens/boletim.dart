@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:projeto_educa_lucashenderson/models/disciplina_nota.dart';
 
 class Boletim extends StatefulWidget {
   const Boletim({super.key});
@@ -21,7 +22,7 @@ class _BoletimState extends State<Boletim> {
   }
 
   Future<void> fetchNotas() async {
-    const url = 'https://sua-api.com/disciplina-notas'; // substitua aqui
+    const url = 'https://684abfe6165d05c5d35a25da.mockapi.io/boletin';
     try {
       final response = await http.get(Uri.parse(url));
 
@@ -94,43 +95,4 @@ class _BoletimState extends State<Boletim> {
   }
 }
 
-class DisciplinaNota {
-  final String periodoLetivo;
-  final String codigo;
-  final String disciplina;
-  final int? faltas;
-  final double? a1;
-  final double? a2;
-  final double? exameFinal;
-  final double? mediaSemestral;
-  final double? mediaFinal;
-  final String situacao;
 
-  DisciplinaNota({
-    required this.periodoLetivo,
-    required this.codigo,
-    required this.disciplina,
-    this.faltas,
-    this.a1,
-    this.a2,
-    this.exameFinal,
-    this.mediaSemestral,
-    this.mediaFinal,
-    required this.situacao,
-  });
-
-  factory DisciplinaNota.fromJson(Map<String, dynamic> json) {
-    return DisciplinaNota(
-      periodoLetivo: json['periodoLetivo'],
-      codigo: json['codigo'],
-      disciplina: json['disciplina'],
-      faltas: json['faltas'],
-      a1: (json['a1'] as num?)?.toDouble(),
-      a2: (json['a2'] as num?)?.toDouble(),
-      exameFinal: (json['exameFinal'] as num?)?.toDouble(),
-      mediaSemestral: (json['mediaSemestral'] as num?)?.toDouble(),
-      mediaFinal: (json['mediaFinal'] as num?)?.toDouble(),
-      situacao: json['situacao'],
-    );
-  }
-}
