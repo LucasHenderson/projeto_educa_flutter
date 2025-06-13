@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:projeto_educa_lucashenderson/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 // Modelo de dados
 class SituacaoAcademica {
-  final String matricula;
-  final String nome;
   final String curso;
   final String situacao;
   final List<String> documentos;
 
   SituacaoAcademica({
-    required this.matricula,
-    required this.nome,
     required this.curso,
     required this.situacao,
     required this.documentos,
@@ -20,8 +18,6 @@ class SituacaoAcademica {
 
   factory SituacaoAcademica.fromJson(Map<String, dynamic> json) {
     return SituacaoAcademica(
-      matricula: json['matricula'],
-      nome: json['nome'],
       curso: json['curso'],
       situacao: json['situacao'],
       documentos: List<String>.from(json['documentos']),
@@ -46,10 +42,11 @@ class _SituacaoAcademicaPageState extends State<SituacaoAcademicaPage> {
   }
 
   Future<SituacaoAcademica> _fetchSituacaoAcademica() async {
-    final response = await http.get(Uri.parse('https://sua-api.com/situacao'));
+    final response = await http.get(Uri.parse('https://684b8138ed2578be881b8de9.mockapi.io/situacao'));
 
     if (response.statusCode == 200) {
-      return SituacaoAcademica.fromJson(json.decode(response.body));
+      final data = json.decode(response.body);
+      return SituacaoAcademica.fromJson(data[0]);
     } else {
       throw Exception('Falha ao carregar situação acadêmica');
     }
@@ -57,6 +54,8 @@ class _SituacaoAcademicaPageState extends State<SituacaoAcademicaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final nome = Provider.of<AuthProvider>(context).nome ?? 'Usuário não encontrado';
+    final matricula = Provider.of<AuthProvider>(context).matricula ?? 'Matrícula não encontrada';
     return Scaffold(
       appBar: AppBar(title: const Text('Situação Acadêmica')),
       body: FutureBuilder<SituacaoAcademica>(
@@ -86,8 +85,8 @@ class _SituacaoAcademicaPageState extends State<SituacaoAcademicaPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                _buildField(label: 'Nº de Matrícula:', value: data.matricula),
-                _buildField(label: 'Nome:', value: data.nome),
+                _buildField(label: 'Nº de Matrícula:', value: matricula),
+                _buildField(label: 'Nome:', value: nome),
                 _buildField(label: 'Curso:', value: data.curso),
                 _buildField(label: 'Situação:', value: data.situacao),
                 const SizedBox(height: 16),
